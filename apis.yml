@@ -7,9 +7,9 @@ apis:
     tags:
       - Domains
       - DNS
-    humanURL: ' https://completedns.com/'
+    humanURL: https://completedns.com/
     properties:
-      - url: ' https://completedns.com/'
+      - url: https://completedns.com/
         type: Documentation
     description: >-
       CompleteDNS is a powerful and comprehensive domain name system (DNS)
@@ -32,7 +32,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-02-09'
-modified: '2025-03-01'
+modified: '2026-03-16'
 position: Consumer
 description: >-
   CompleteDNS is a comprehensive domain name system (DNS) service that helps
@@ -47,5 +47,5 @@ description: >-
   improve their online presence.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
