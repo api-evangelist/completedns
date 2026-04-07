@@ -5,8 +5,8 @@ apis:
   - aid: completedns:completedns
     name: CompleteDNS
     tags:
-      - Domains
       - DNS
+      - Domains
     humanURL: https://completedns.com/
     properties:
       - url: https://completedns.com/
@@ -19,8 +19,8 @@ apis:
       and protect against cyber threats such as malware and phishing attacks.
 name: CompleteDNS
 tags:
-  - Domains
   - DNS
+  - Domains
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
