@@ -1,0 +1,63 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "completedns": "https://api.completedns.com/v2/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "DnsHistory": {
+      "@id": "completedns:DnsHistory",
+      "@context": {
+        "domain": "schema:name",
+        "drops": {
+          "@id": "completedns:drops",
+          "@type": "xsd:integer"
+        },
+        "changes": {
+          "@id": "completedns:changes",
+          "@type": "xsd:integer"
+        },
+        "years": {
+          "@id": "completedns:years",
+          "@type": "xsd:decimal"
+        },
+        "wasParked": {
+          "@id": "completedns:was_parked",
+          "@type": "xsd:boolean"
+        },
+        "events": {
+          "@id": "completedns:events",
+          "@container": "@list"
+        }
+      }
+    },
+
+    "DnsEvent": {
+      "@id": "completedns:DnsEvent",
+      "@context": {
+        "date": {
+          "@id": "dcterms:date",
+          "@type": "xsd:date"
+        },
+        "type": "completedns:eventType",
+        "nameservers": {
+          "@id": "completedns:nameservers",
+          "@container": "@set"
+        },
+        "changes": {
+          "@id": "completedns:changeSet",
+          "@container": "@list"
+        }
+      }
+    },
+
+    "NameserverChange": {
+      "@id": "completedns:NameserverChange",
+      "@context": {
+        "action": "completedns:action",
+        "nameserver": "completedns:nameserver"
+      }
+    }
+  }
+}

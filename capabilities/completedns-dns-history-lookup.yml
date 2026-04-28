@@ -1,0 +1,41 @@
+# Naftiko capabilities profile for CompleteDNS.
+# Capabilities map verbs against the lookup operations exposed by the
+# CompleteDNS v1 (legacy) and v2 APIs. Each capability links back to the
+# canonical OpenAPI definitions in this repo.
+provider: completedns
+name: CompleteDNS
+description: >-
+  CompleteDNS tracks historical nameserver records and domain drops. These
+  capabilities cover retrieving nameserver history for a given domain
+  through both the v2 (recommended) and v1 (legacy) API endpoints.
+capabilities:
+  - id: completedns.dns-history.get
+    name: Get DNS history (v2)
+    description: Retrieve the chronologically ordered nameserver history for a domain via the v2 API.
+    api: completedns:dns-history-api
+    operationRef: openapi/completedns-v2-openapi.yml#/paths/~1dns-history~1{domain}/get
+    inputs:
+      - domain
+      - key
+    outputs:
+      - domain
+      - drops
+      - changes
+      - years
+      - was_parked
+      - events
+
+  - id: completedns.ns-history.get
+    name: Get nameserver history (v1)
+    description: Retrieve nameserver history for a domain via the legacy v1 API.
+    api: completedns:ns-history-api
+    operationRef: openapi/completedns-v1-openapi.yml#/paths/~1ns-history~1{domain}/get
+    inputs:
+      - domain
+      - key
+    outputs:
+      - drops
+      - changes
+      - years
+      - supported
+      - data

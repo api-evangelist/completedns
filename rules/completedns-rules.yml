@@ -1,0 +1,98 @@
+extends:
+  - spectral:oas
+
+# Spectral linting rules tuned for the CompleteDNS API.
+# Validates that OpenAPI specs follow CompleteDNS conventions described at
+# https://completedns.com/api/documentation/v2 — API key in the `key`
+# query parameter, JSON responses, and domain-scoped paths.
+rules:
+  completedns-info-contact:
+    description: API contact information must be present.
+    severity: error
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  completedns-info-terms:
+    description: API terms of service must be declared.
+    severity: warn
+    given: "$.info"
+    then:
+      field: termsOfService
+      function: truthy
+
+  completedns-server-https:
+    description: All server URLs must use HTTPS.
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  completedns-server-versioned:
+    description: Server URLs must include the API version segment.
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "/v[12]$"
+
+  completedns-apikey-security:
+    description: The apiKey query security scheme must be defined.
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+
+  completedns-operation-tags:
+    description: Every operation must declare at least one tag.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+
+  completedns-operation-summary:
+    description: Every operation must include a short summary.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  completedns-operation-id:
+    description: Every operation must declare a unique operationId.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  completedns-domain-parameter:
+    description: Lookup endpoints should accept a domain path parameter.
+    severity: info
+    given: "$.paths[?(@property.indexOf('{domain}') > -1)]"
+    then:
+      function: truthy
+
+  completedns-error-responses:
+    description: Lookup operations should declare 4xx error responses.
+    severity: warn
+    given: "$.paths[*].get.responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: ["400"]
+            - required: ["401"]
+            - required: ["403"]
+            - required: ["404"]

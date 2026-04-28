@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/completedns/main/json-schema/completedns-dns-history-schema.json",
+  "title": "CompleteDNS DNS History",
+  "description": "Schema for the CompleteDNS v2 DNS history response.",
+  "type": "object",
+  "properties": {
+    "domain": {
+      "type": "string",
+      "description": "The queried domain name."
+    },
+    "drops": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total nameserver drop events."
+    },
+    "changes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total nameserver change events."
+    },
+    "years": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Years of history tracked."
+    },
+    "was_parked": {
+      "type": "boolean",
+      "description": "Whether the domain was ever parked."
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    }
+  },
+  "required": ["domain", "events"],
+  "$defs": {
+    "event": {
+      "type": "object",
+      "properties": {
+        "date": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["start_tracking", "dropped", "created", "change"]
+        },
+        "nameservers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action": { "type": "string", "enum": ["added", "removed"] },
+              "nameserver": { "type": "string" }
+            }
+          }
+        }
+      },
+      "required": ["type"]
+    }
+  }
+}
