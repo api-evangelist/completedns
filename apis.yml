@@ -22,7 +22,7 @@ tags:
 created: '2025-02-09'
 modified: '2026-04-28'
 specificationVersion: '0.19'
-x-type: company
+kind: company
 apis:
   - aid: completedns:dns-history-api
     name: CompleteDNS API v2
@@ -99,7 +99,7 @@ common:
     url: https://completedns.com/
   - type: Documentation
     url: https://completedns.com/api/documentation/v2
-  - type: Sign Up
+  - type: SignUp
     url: https://completedns.com/register
   - type: Login
     url: https://completedns.com/login
@@ -107,11 +107,11 @@ common:
     url: https://completedns.com/pricing
   - type: Contact
     url: https://completedns.com/contact
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://completedns.com/terms
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://completedns.com/privacy
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/completedns-context.jsonld
   - type: JSONSchema
     url: json-schema/completedns-dns-history-schema.json
