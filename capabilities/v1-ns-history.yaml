@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CompleteDNS API v1 — NS History
+  description: 'CompleteDNS API v1 — NS History. 1 operations. Lead operation: Get nameserver history for a domain. Self-contained
+    Naftiko capability covering one Completedns business surface.'
+  tags:
+  - Completedns
+  - NS History
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    COMPLETEDNS_API_KEY: COMPLETEDNS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v1-ns-history
+    baseUri: https://api.completedns.com/v1
+    description: CompleteDNS API v1 — NS History business capability. Self-contained, no shared references.
+    resources:
+    - name: ns-history-domain
+      path: /ns-history/{domain}
+      operations:
+      - name: getnshistory
+        method: GET
+        description: Get nameserver history for a domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: domain
+          in: path
+          type: string
+          description: The fully qualified domain to look up.
+          required: true
+        - name: key
+          in: query
+          type: string
+          description: API key issued in the CompleteDNS account API section.
+          required: true
+    authentication:
+      type: apikey
+      key: key
+      value: '{{env.COMPLETEDNS_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: v1-ns-history-rest
+    port: 8080
+    description: REST adapter for CompleteDNS API v1 — NS History. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/ns-history/{domain}
+      name: ns-history-domain
+      description: REST surface for ns-history-domain.
+      operations:
+      - method: GET
+        name: getnshistory
+        description: Get nameserver history for a domain
+        call: v1-ns-history.getnshistory
+        with:
+          domain: rest.domain
+          key: rest.key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v1-ns-history-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CompleteDNS API v1 — NS History. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-nameserver-history-domain
+      description: Get nameserver history for a domain
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v1-ns-history.getnshistory
+      with:
+        domain: tools.domain
+        key: tools.key
+      outputParameters:
+      - type: object
+        mapping: $.

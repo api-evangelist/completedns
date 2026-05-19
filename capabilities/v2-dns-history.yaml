@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CompleteDNS API v2 — DNS History
+  description: 'CompleteDNS API v2 — DNS History. 1 operations. Lead operation: Get DNS history for a domain. Self-contained
+    Naftiko capability covering one Completedns business surface.'
+  tags:
+  - Completedns
+  - DNS History
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    COMPLETEDNS_API_KEY: COMPLETEDNS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v2-dns-history
+    baseUri: https://api.completedns.com/v2
+    description: CompleteDNS API v2 — DNS History business capability. Self-contained, no shared references.
+    resources:
+    - name: dns-history-domain
+      path: /dns-history/{domain}
+      operations:
+      - name: getdnshistory
+        method: GET
+        description: Get DNS history for a domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: domain
+          in: path
+          type: string
+          description: The fully qualified domain to look up.
+          required: true
+        - name: key
+          in: query
+          type: string
+          description: API key issued in the CompleteDNS account API section.
+          required: true
+    authentication:
+      type: apikey
+      key: key
+      value: '{{env.COMPLETEDNS_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: v2-dns-history-rest
+    port: 8080
+    description: REST adapter for CompleteDNS API v2 — DNS History. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/dns-history/{domain}
+      name: dns-history-domain
+      description: REST surface for dns-history-domain.
+      operations:
+      - method: GET
+        name: getdnshistory
+        description: Get DNS history for a domain
+        call: v2-dns-history.getdnshistory
+        with:
+          domain: rest.domain
+          key: rest.key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v2-dns-history-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CompleteDNS API v2 — DNS History. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-dns-history-domain
+      description: Get DNS history for a domain
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v2-dns-history.getdnshistory
+      with:
+        domain: tools.domain
+        key: tools.key
+      outputParameters:
+      - type: object
+        mapping: $.
