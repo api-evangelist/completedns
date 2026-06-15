@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CompleteDNS API v2",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "key",
+      "value": "{{key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DNS History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get DNS history for a domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.completedns.com/v2/dns-history/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path",
+                "description": "The fully qualified domain to look up."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "API key issued in the CompleteDNS account API section."
+              }
+            ]
+          },
+          "docs": "Returns the full history of nameserver changes and drop events for the requested domain, including the count of changes, count of drops, years tracked, and a chronologically ordered list of events."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

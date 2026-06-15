@@ -1,0 +1,347 @@
+{
+  "item": [
+    {
+      "id": "19a5a903-95eb-4218-9b2f-682dda03f6cd",
+      "name": "NS History",
+      "description": {
+        "content": "Nameserver history (legacy) for a domain",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a40ddbf7-6106-4174-9d1f-16352c2a051b",
+          "name": "Get nameserver history for a domain",
+          "request": {
+            "name": "Get nameserver history for a domain",
+            "description": {
+              "content": "Returns the full history of nameserver changes and drop events for the requested domain. Response includes drop count, change count, years tracked, TLD support flag, and a chronologically ordered list of events.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ns-history",
+                ":domain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) API key issued in the CompleteDNS account API section."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domain",
+                  "description": "(Required) The fully qualified domain to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98a28a66-0106-46e1-9706-b41f893e97db",
+              "name": "Nameserver history record for the domain.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ns-history",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) The fully qualified domain to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of API requests remaining in the current quota.",
+                  "key": "requestsLeft",
+                  "value": "7343"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drops\": 4330,\n  \"changes\": 1824,\n  \"years\": 3890.3253060769684,\n  \"supported\": true,\n  \"data\": [\n    {\n      \"type\": \"new_domain\",\n      \"date\": \"string\",\n      \"nameservers\": [\n        {\n          \"added_ns\": \"string\",\n          \"deleted_ns\": \"string\"\n        },\n        {\n          \"added_ns\": \"string\",\n          \"deleted_ns\": \"string\"\n        }\n      ]\n    },\n    {\n      \"type\": \"ns_change\",\n      \"date\": \"string\",\n      \"nameservers\": [\n        {\n          \"added_ns\": \"string\",\n          \"deleted_ns\": \"string\"\n        },\n        {\n          \"added_ns\": \"string\",\n          \"deleted_ns\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fc2ecac-87ed-4c77-b4b7-5912e5a5e5c2",
+              "name": "Invalid domain.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ns-history",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) The fully qualified domain to look up."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "083190df-307d-41ce-84d1-8d936c808682",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ns-history",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) The fully qualified domain to look up."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19aecd80-89f6-46b8-942b-8a3e64f98db2",
+              "name": "IP restriction or quota exhausted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ns-history",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) The fully qualified domain to look up."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1ab9c7dc-b79d-46db-8ef5-a518b8979023",
+              "name": "Domain not tracked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ns-history",
+                    ":domain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) The fully qualified domain to look up."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.completedns.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "294cd80f-2b9a-4fd0-83ee-82fb8d9ab0e3",
+    "name": "CompleteDNS API v1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The CompleteDNS API v1 returns the historical nameserver record for a domain (legacy version). The service tracks nameserver changes and domain drops and returns chronologically ordered events for a queried domain. Authentication is via an API key passed as a query string parameter. CompleteDNS recommends using the v2 API for new integrations.\n\nContact Support:\n Name: CompleteDNS",
+      "type": "text/plain"
+    }
+  }
+}
