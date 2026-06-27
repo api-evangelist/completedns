@@ -40,7 +40,7 @@ apis:
         url: https://completedns.com/api/documentation/v2
       - type: OpenAPI
         url: openapi/completedns-v2-openapi.yml
-      - type: Spectral Rules
+      - type: SpectralRules
         url: rules/completedns-rules.yml
     features:
       - title: Domain DNS History
@@ -76,7 +76,7 @@ apis:
         url: https://completedns.com/api/documentation/v1
       - type: OpenAPI
         url: openapi/completedns-v1-openapi.yml
-      - type: Spectral Rules
+      - type: SpectralRules
         url: rules/completedns-rules.yml
     features:
       - title: Legacy Nameserver History
@@ -91,7 +91,7 @@ common:
     url: https://completedns.com/
   - type: Documentation
     url: https://completedns.com/api/documentation/v2
-  - type: SignUp
+  - type: Signup
     url: https://completedns.com/register
   - type: Login
     url: https://completedns.com/login
