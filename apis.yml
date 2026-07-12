@@ -87,6 +87,10 @@ apis:
       - title: Legacy Integrations
         description: Maintain compatibility with existing tooling that consumes the v1 API.
 common:
+  - type: DomainSecurity
+    url: security/completedns-domain-security.yml
+  - type: Authentication
+    url: authentication/completedns-authentication.yml
   - type: Portal
     url: https://completedns.com/
   - type: Documentation

@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/completedns-v1-openapi.yml, openapi/completedns-v2-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: apiKey
+  type: apiKey
+  in: query
+  parameter: key
+  sources:
+  - openapi/completedns-v1-openapi.yml
+  - openapi/completedns-v2-openapi.yml
