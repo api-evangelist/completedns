@@ -87,6 +87,8 @@ apis:
       - title: Legacy Integrations
         description: Maintain compatibility with existing tooling that consumes the v1 API.
 common:
+  - type: AgenticAccess
+    url: agentic-access/completedns-agentic-access.yml
   - type: DomainSecurity
     url: security/completedns-domain-security.yml
   - type: Authentication
