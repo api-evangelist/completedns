@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: CompleteDNS API v1 DNS History API
+  description: The CompleteDNS API v1 returns the historical nameserver record for a domain (legacy version). The service tracks nameserver changes and domain drops and returns chronologically ordered events for a queried domain. Authentication is via an API key passed as a query string parameter. CompleteDNS recommends using the v2 API for new integrations.
+  version: v1
+  contact:
+    name: CompleteDNS
+    url: https://completedns.com/contact
+  termsOfService: https://completedns.com/terms
+servers:
+- url: https://api.completedns.com/v1
+  description: CompleteDNS v1 production API
+security:
+- apiKey: []
+tags:
+- name: DNS History
+  description: Nameserver and drop history for a domain
+paths:
+  /dns-history/{domain}:
+    get:
+      operationId: getDnsHistory
+      summary: Get DNS history for a domain
+      description: Returns the full history of nameserver changes and drop events for the requested domain, including the count of changes, count of drops, years tracked, and a chronologically ordered list of events.
+      tags:
+      - DNS History
+      parameters:
+      - name: domain
+        in: path
+        required: true
+        description: The fully qualified domain to look up.
+        schema:
+          type: string
+          example: youtube.com
+      - name: key
+        in: query
+        required: true
+        description: API key issued in the CompleteDNS account API section.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: DNS history record for the domain.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DnsHistoryResponse'
+        '400':
+          description: Invalid domain or unsupported TLD.
+        '401':
+          description: Missing or invalid API key.
+        '403':
+          description: IP restriction or quota exhausted.
+        '404':
+          description: Domain not tracked.
+components:
+  schemas:
+    NameserverChange:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - added
+          - removed
+        nameserver:
+          type: string
+    DnsEvent:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Exact date or date range when the event occurred.
+        type:
+          type: string
+          enum:
+          - start_tracking
+          - dropped
+          - created
+          - change
+        nameservers:
+          type: array
+          items:
+            type: string
+          description: Active nameservers at the time of the event.
+        changes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NameserverChange'
+    DnsHistoryResponse:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The queried domain name.
+        drops:
+          type: integer
+          description: Total nameserver removal events recorded.
+        changes:
+          type: integer
+          description: Total nameserver change events recorded.
+        years:
+          type: number
+          description: Years of history tracked for the domain.
+        was_parked:
+          type: boolean
+          description: Whether the domain was parked at any point in the history.
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/DnsEvent'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: key
+externalDocs:
+  description: CompleteDNS API v1 Documentation
+  url: https://completedns.com/api/documentation/v1

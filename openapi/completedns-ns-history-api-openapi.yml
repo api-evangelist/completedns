@@ -1,55 +1,42 @@
 openapi: 3.1.0
 info:
-  title: CompleteDNS API v1
-  description: >-
-    The CompleteDNS API v1 returns the historical nameserver record for a
-    domain (legacy version). The service tracks nameserver changes and
-    domain drops and returns chronologically ordered events for a queried
-    domain. Authentication is via an API key passed as a query string
-    parameter. CompleteDNS recommends using the v2 API for new
-    integrations.
+  title: CompleteDNS API v1 DNS History NS History API
+  description: The CompleteDNS API v1 returns the historical nameserver record for a domain (legacy version). The service tracks nameserver changes and domain drops and returns chronologically ordered events for a queried domain. Authentication is via an API key passed as a query string parameter. CompleteDNS recommends using the v2 API for new integrations.
   version: v1
   contact:
     name: CompleteDNS
     url: https://completedns.com/contact
   termsOfService: https://completedns.com/terms
-externalDocs:
-  description: CompleteDNS API v1 Documentation
-  url: https://completedns.com/api/documentation/v1
 servers:
-  - url: https://api.completedns.com/v1
-    description: CompleteDNS v1 production API
-tags:
-  - name: NS History
-    description: Nameserver history (legacy) for a domain
+- url: https://api.completedns.com/v1
+  description: CompleteDNS v1 production API
 security:
-  - apiKey: []
+- apiKey: []
+tags:
+- name: NS History
+  description: Nameserver history (legacy) for a domain
 paths:
   /ns-history/{domain}:
     get:
       operationId: getNsHistory
       summary: Get nameserver history for a domain
-      description: >-
-        Returns the full history of nameserver changes and drop events for
-        the requested domain. Response includes drop count, change count,
-        years tracked, TLD support flag, and a chronologically ordered list
-        of events.
+      description: Returns the full history of nameserver changes and drop events for the requested domain. Response includes drop count, change count, years tracked, TLD support flag, and a chronologically ordered list of events.
       tags:
-        - NS History
+      - NS History
       parameters:
-        - name: domain
-          in: path
-          required: true
-          description: The fully qualified domain to look up.
-          schema:
-            type: string
-            example: youtube.com
-        - name: key
-          in: query
-          required: true
-          description: API key issued in the CompleteDNS account API section.
-          schema:
-            type: string
+      - name: domain
+        in: path
+        required: true
+        description: The fully qualified domain to look up.
+        schema:
+          type: string
+          example: youtube.com
+      - name: key
+        in: query
+        required: true
+        description: API key issued in the CompleteDNS account API section.
+        schema:
+          type: string
       responses:
         '200':
           description: Nameserver history record for the domain.
@@ -71,11 +58,6 @@ paths:
         '404':
           description: Domain not tracked.
 components:
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      in: query
-      name: key
   schemas:
     NsHistoryResponse:
       type: object
@@ -102,10 +84,10 @@ components:
         type:
           type: string
           enum:
-            - started_tracking
-            - ns_change
-            - new_domain
-            - deleted_domain
+          - started_tracking
+          - ns_change
+          - new_domain
+          - deleted_domain
         date:
           type: string
         nameservers:
@@ -117,3 +99,11 @@ components:
                 type: string
               deleted_ns:
                 type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: key
+externalDocs:
+  description: CompleteDNS API v1 Documentation
+  url: https://completedns.com/api/documentation/v1
