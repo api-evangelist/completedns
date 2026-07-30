@@ -6,9 +6,22 @@ description: >-
   chronological history of nameserver changes, drop events, and parking status for a given domain. Both a current v2 API
   and a legacy v1 API are available, authenticated by API key.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/completedns.png
 url: https://raw.githubusercontent.com/api-evangelist/completedns/refs/heads/main/apis.yml
 tags:
   - DNS
@@ -22,71 +35,41 @@ modified: '2026-05-19'
 specificationVersion: '0.19'
 kind: company
 apis:
-  - aid: completedns:dns-history-api
-    name: CompleteDNS API v2
-    description: >-
-      The CompleteDNS API v2 returns the historical nameserver record for a domain, including counts of changes and
-      drops, years of history, and a chronologically ordered list of events. Authentication uses an API key passed as a
-      query parameter.
-    humanURL: https://completedns.com/api/documentation/v2
-    baseURL: https://api.completedns.com/v2
-    tags:
-      - DNS History
-      - Domains
-      - Lookup
-      - Nameservers
-    properties:
-      - type: Documentation
-        url: https://completedns.com/api/documentation/v2
-      - type: OpenAPI
-        url: openapi/completedns-v2-openapi.yml
-      - type: SpectralRules
-        url: rules/completedns-rules.yml
-    features:
-      - title: Domain DNS History
-        description: Retrieve the full nameserver history for a domain by name.
-      - title: Drop Tracking
-        description: Surface domain drop events captured by CompleteDNS.
-      - title: Parking Detection
-        description: Indicates whether a domain was parked at any point in its history.
-      - title: API Key Authentication
-        description: Authentication via API key passed as a query parameter.
-    useCases:
-      - title: Threat Intelligence
-        description: Investigate suspicious domains by reviewing nameserver pivots over time.
-      - title: Brand Protection
-        description: Track unauthorized nameserver changes on monitored domains.
-      - title: Domain Acquisition Research
-        description: Analyze the historical reliability of a domain prior to acquisition.
-  - aid: completedns:ns-history-api
-    name: CompleteDNS API v1
-    description: >-
-      The CompleteDNS API v1 (legacy) returns the historical nameserver record for a domain. Includes drop and change
-      counts, TLD support indicator, and chronologically ordered events with added/removed nameservers. CompleteDNS
-      recommends migrating to v2.
-    humanURL: https://completedns.com/api/documentation/v1
-    baseURL: https://api.completedns.com/v1
-    tags:
-      - DNS History
-      - Legacy
-      - Lookup
-      - Nameservers
-    properties:
-      - type: Documentation
-        url: https://completedns.com/api/documentation/v1
-      - type: OpenAPI
-        url: openapi/completedns-v1-openapi.yml
-      - type: SpectralRules
-        url: rules/completedns-rules.yml
-    features:
-      - title: Legacy Nameserver History
-        description: Returns nameserver history events with added/removed nameserver records.
-      - title: Quota Header
-        description: requestsLeft response header surfaces remaining API quota.
-    useCases:
-      - title: Legacy Integrations
-        description: Maintain compatibility with existing tooling that consumes the v1 API.
+- aid: completedns:completedns-dns-history-api
+  name: CompleteDNS DNS History API
+  description: Nameserver and drop history for a domain
+  humanURL: https://completedns.com/api/documentation/v2
+  baseURL: https://api.completedns.com/v2
+  tags:
+  - DNS History
+  properties:
+  - type: OpenAPI
+    url: openapi/completedns-dns-history-api-openapi.yml
+  - type: Documentation
+    url: https://completedns.com/api/documentation/v2
+  - type: SpectralRules
+    url: rules/completedns-rules.yml
+  - type: Documentation
+    url: https://completedns.com/api/documentation/v1
+- aid: completedns:completedns-ns-history-api
+  name: CompleteDNS NS History API
+  description: Nameserver history (legacy) for a domain
+  humanURL: https://completedns.com/api/documentation/v2
+  baseURL: https://api.completedns.com/v2
+  tags:
+  - NS History
+  properties:
+  - type: OpenAPI
+    url: openapi/completedns-ns-history-api-openapi.yml
+  - type: Documentation
+    url: https://completedns.com/api/documentation/v2
+  - type: SpectralRules
+    url: rules/completedns-rules.yml
+  - type: Documentation
+    url: https://completedns.com/api/documentation/v1
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/completedns/overview
   - type: AgenticAccess
     url: agentic-access/completedns-agentic-access.yml
   - type: DomainSecurity
