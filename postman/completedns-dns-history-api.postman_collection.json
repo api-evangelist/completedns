@@ -1,0 +1,315 @@
+{
+  "info": {
+    "_postman_id": "7e02605b-ec47-4d9c-b31b-fe9b8ce0d29b",
+    "name": "CompleteDNS API v1 DNS History API",
+    "description": "The CompleteDNS API v1 returns the historical nameserver record for a domain (legacy version). The service tracks nameserver changes and domain drops and returns chronologically ordered events for a queried domain. Authentication is via an API key passed as a query string parameter. CompleteDNS recommends using the v2 API for new integrations.\n\nContact Support:\n Name: CompleteDNS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:25:12.000Z",
+    "updatedAt": "2026-07-28T01:25:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7e02605b-ec47-4d9c-b31b-fe9b8ce0d29b"
+  },
+  "item": [
+    {
+      "name": "dns-history",
+      "item": [
+        {
+          "name": "{domain}",
+          "item": [
+            {
+              "name": "Get DNS history for a domain",
+              "id": "40722193-876b-4623-b278-8906fb7f7331",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dns-history/:domain?key=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dns-history",
+                    ":domain"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) API key issued in the CompleteDNS account API section.",
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "f579e32d-40c1-4d9c-80dd-5af58853f405",
+                      "key": "domain",
+                      "value": "<string>",
+                      "description": "(Required) The fully qualified domain to look up."
+                    }
+                  ]
+                },
+                "description": "Returns the full history of nameserver changes and drop events for the requested domain, including the count of changes, count of drops, years tracked, and a chronologically ordered list of events."
+              },
+              "response": [
+                {
+                  "id": "8e69c3f8-5f33-4c74-8a07-356625d20c92",
+                  "name": "DNS history record for the domain.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dns-history/:domain?key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dns-history",
+                        ":domain"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) API key issued in the CompleteDNS account API section.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"domain\": \"<string>\",\n  \"drops\": \"<integer>\",\n  \"changes\": \"<integer>\",\n  \"years\": \"<number>\",\n  \"was_parked\": \"<boolean>\",\n  \"events\": [\n    {\n      \"date\": \"<string>\",\n      \"type\": \"start_tracking\",\n      \"nameservers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"changes\": [\n        {\n          \"action\": \"added\",\n          \"nameserver\": \"<string>\"\n        },\n        {\n          \"action\": \"removed\",\n          \"nameserver\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"date\": \"<string>\",\n      \"type\": \"start_tracking\",\n      \"nameservers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"changes\": [\n        {\n          \"action\": \"added\",\n          \"nameserver\": \"<string>\"\n        },\n        {\n          \"action\": \"added\",\n          \"nameserver\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:25:13.000Z",
+                  "updatedAt": "2026-07-28T01:25:13.000Z",
+                  "uid": "35240-8e69c3f8-5f33-4c74-8a07-356625d20c92"
+                },
+                {
+                  "id": "ee9710ab-8bb7-47a7-b142-9997dfb3d6f7",
+                  "name": "Invalid domain or unsupported TLD.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/dns-history/:domain?key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dns-history",
+                        ":domain"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) API key issued in the CompleteDNS account API section.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:25:13.000Z",
+                  "updatedAt": "2026-07-28T01:25:13.000Z",
+                  "uid": "35240-ee9710ab-8bb7-47a7-b142-9997dfb3d6f7"
+                },
+                {
+                  "id": "1a3f6016-666c-4f93-8a09-c4fdd31a2652",
+                  "name": "Missing or invalid API key.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/dns-history/:domain?key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dns-history",
+                        ":domain"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) API key issued in the CompleteDNS account API section.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:25:13.000Z",
+                  "updatedAt": "2026-07-28T01:25:13.000Z",
+                  "uid": "35240-1a3f6016-666c-4f93-8a09-c4fdd31a2652"
+                },
+                {
+                  "id": "2220ab13-ec2f-4ad9-8e1f-deebcb8fbdc5",
+                  "name": "IP restriction or quota exhausted.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/dns-history/:domain?key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dns-history",
+                        ":domain"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) API key issued in the CompleteDNS account API section.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:25:13.000Z",
+                  "updatedAt": "2026-07-28T01:25:13.000Z",
+                  "uid": "35240-2220ab13-ec2f-4ad9-8e1f-deebcb8fbdc5"
+                },
+                {
+                  "id": "350d2a1d-d7b1-463d-9391-a74410d96568",
+                  "name": "Domain not tracked.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/dns-history/:domain?key=<API Key>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dns-history",
+                        ":domain"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) API key issued in the CompleteDNS account API section.",
+                          "key": "key",
+                          "value": "<API Key>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:25:13.000Z",
+                  "updatedAt": "2026-07-28T01:25:13.000Z",
+                  "uid": "35240-350d2a1d-d7b1-463d-9391-a74410d96568"
+                }
+              ],
+              "createdAt": "2026-07-28T01:25:13.000Z",
+              "updatedAt": "2026-07-28T01:25:13.000Z",
+              "uid": "35240-40722193-876b-4623-b278-8906fb7f7331"
+            }
+          ],
+          "id": "a601666d-4925-457a-a9e1-0cc7bb0a5e45",
+          "createdAt": "2026-07-28T01:25:13.000Z",
+          "updatedAt": "2026-07-28T01:25:13.000Z",
+          "uid": "35240-a601666d-4925-457a-a9e1-0cc7bb0a5e45"
+        }
+      ],
+      "id": "5ba3e540-e0b3-4ce7-b900-2ec640bb6609",
+      "createdAt": "2026-07-28T01:25:13.000Z",
+      "updatedAt": "2026-07-28T01:25:13.000Z",
+      "uid": "35240-5ba3e540-e0b3-4ce7-b900-2ec640bb6609"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "query",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.completedns.com/v1"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "provider": "completedns",
+  "sources": [
+    "completedns-dns-history-api-openapi.yml",
+    "completedns-ns-history-api-openapi.yml"
+  ],
+  "outputs": [
+    "completedns-dns-history-api-openapi.yml",
+    "completedns-ns-history-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
