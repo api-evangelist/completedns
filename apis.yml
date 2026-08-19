@@ -32,7 +32,7 @@ tags:
   - Threat Intelligence
 created: '2025-02-09'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 kind: company
 apis:
 - aid: completedns:completedns-dns-history-api
