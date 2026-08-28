@@ -6,6 +6,18 @@ description: >-
   chronological history of nameserver changes, drop events, and parking status for a given domain. Both a current v2 API
   and a legacy v1 API are available, authenticated by API key.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
