@@ -81,6 +81,8 @@ apis:
   - type: Documentation
     url: https://completedns.com/api/documentation/v1
 common:
+  - type: Website
+    url: https://www.completedns.com/
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/completedns/overview
   - type: AgenticAccess
