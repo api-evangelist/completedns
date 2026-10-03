@@ -54,6 +54,16 @@ paths:
           description: Domain not tracked.
 components:
   schemas:
+    NameserverChange:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - added
+          - removed
+        nameserver:
+          type: string
     DnsEvent:
       type: object
       properties:
@@ -98,16 +108,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DnsEvent'
-    NameserverChange:
-      type: object
-      properties:
-        action:
-          type: string
-          enum:
-          - added
-          - removed
-        nameserver:
-          type: string
   securitySchemes:
     apiKey:
       type: apiKey
