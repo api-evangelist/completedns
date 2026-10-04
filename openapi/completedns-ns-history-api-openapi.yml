@@ -59,6 +59,25 @@ paths:
           description: Domain not tracked.
 components:
   schemas:
+    NsHistoryResponse:
+      type: object
+      properties:
+        drops:
+          type: integer
+          description: Total nameserver removal events recorded.
+        changes:
+          type: integer
+          description: Total nameserver change events recorded.
+        years:
+          type: number
+          description: Years of history tracked for the domain.
+        supported:
+          type: boolean
+          description: Whether the queried TLD is supported.
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NsEvent'
     NsEvent:
       type: object
       properties:
@@ -80,25 +99,6 @@ components:
                 type: string
               deleted_ns:
                 type: string
-    NsHistoryResponse:
-      type: object
-      properties:
-        drops:
-          type: integer
-          description: Total nameserver removal events recorded.
-        changes:
-          type: integer
-          description: Total nameserver change events recorded.
-        years:
-          type: number
-          description: Years of history tracked for the domain.
-        supported:
-          type: boolean
-          description: Whether the queried TLD is supported.
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/NsEvent'
   securitySchemes:
     apiKey:
       type: apiKey
