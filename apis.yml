@@ -81,6 +81,12 @@ apis:
   - type: Documentation
     url: https://completedns.com/api/documentation/v1
 common:
+  - type: Plans
+    url: plans/completedns-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/completedns-rate-limits.yml
+  - type: FinOps
+    url: finops/completedns-finops.yml
   - type: Website
     url: https://www.completedns.com/
   - type: PostmanWorkspace
