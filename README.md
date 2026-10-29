@@ -1,4 +1,4 @@
-# CompleteDNS (completedns)
+# CompleteDNS
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,88 +66,141 @@
 
 CompleteDNS is a DNS research platform that tracks nameserver modifications and domain drops, with over twenty years of history and billions of recorded changes. The CompleteDNS API exposes domain-scoped lookups that return the chronological history of nameserver changes, drop events, and parking status for a given domain. Both a current v2 API and a legacy v1 API are available, authenticated by API key.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/completedns/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/completedns/refs/heads/main/apis.yml)
+**Areas:** DNS · DNS History · Domain Intelligence · Domains · Nameservers · Threat Intelligence
 
-## Scope
+## CompleteDNS on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for CompleteDNS is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/completedns/](https://apis.io/providers/completedns/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (2)
 
-- DNS
-- DNS History
-- Domain Intelligence
-- Domains
-- Nameservers
-- Threat Intelligence
+- [CompleteDNS DNS History API](https://apis.io/apis/completedns/completedns-dns-history-api/) — Nameserver and drop history for a domain
+- [CompleteDNS NS History API](https://apis.io/apis/completedns/completedns-ns-history-api/) — Nameserver history (legacy) for a domain
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-09
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### CompleteDNS API v2
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The CompleteDNS API v2 returns the historical nameserver record for a domain, including counts of changes and drops, years of history, and a chronologically ordered list of events. Authentication uses an API key passed as a query parameter.
+- [Completedns Agentic Access](https://apis.io/agentic-access/completedns/completedns-agentic-access/)
 
-- **Human URL:** [https://completedns.com/api/documentation/v2](https://completedns.com/api/documentation/v2)
-- **Base URL:** `https://api.completedns.com/v2`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- DNS History
-- Domains
-- Lookup
-- Nameservers
+- [CompleteDNS DNS History](https://apis.io/schemas/completedns/completedns-dns-history/)
 
-#### Properties
+#### JSON-LD (1)
 
+Linked-data contexts for the provider's vocabulary.
+
+- [Completedns Context](https://apis.io/jsonld/completedns/completedns-context/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [CompleteDNS API v1 DNS History API](https://apis.io/collections/completedns/open-completedns-dns-history-api/)
+- [CompleteDNS API v1 DNS History NS History API](https://apis.io/collections/completedns/open-completedns-ns-history-api/)
+- [CompleteDNS API v1](https://apis.io/collections/completedns/open-completedns-v1/)
+- [CompleteDNS API v2](https://apis.io/collections/completedns/open-completedns-v2/)
+- [CompleteDNS API v1 DNS History API](https://apis.io/collections/completedns/postman-completedns-dns-history-api/)
+- [CompleteDNS API v1 DNS History NS History API](https://apis.io/collections/completedns/postman-completedns-ns-history-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [CompleteDNS — jsonschema rules](https://apis.io/rules/completedns/completedns-jsonschema-spectral-rules/)
+- [CompleteDNS API Rules](https://apis.io/rules/completedns/completedns-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Completedns Authentication](https://apis.io/security/completedns/completedns-authentication/)
+- [Completedns Domain Security](https://apis.io/security/completedns/completedns-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Completedns Plans Pricing](https://apis.io/plans/completedns/completedns-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Completedns Rate Limits](https://apis.io/rate-limits/completedns/completedns-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Completedns Finops](https://apis.io/finops/completedns/completedns-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.completedns.com/)
 - [Documentation](https://completedns.com/api/documentation/v2)
-- [OpenAPI](openapi/completedns-v2-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/completedns-v2.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/completedns-v2.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Spectral  Rules](rules/completedns-rules.yml)
-
-### CompleteDNS API v1
-
-The CompleteDNS API v1 (legacy) returns the historical nameserver record for a domain. Includes drop and change counts, TLD support indicator, and chronologically ordered events with added/removed nameservers. CompleteDNS recommends migrating to v2.
-
-- **Human URL:** [https://completedns.com/api/documentation/v1](https://completedns.com/api/documentation/v1)
-- **Base URL:** `https://api.completedns.com/v1`
-
-#### Tags
-
-- DNS History
-- Legacy
-- Lookup
-- Nameservers
-
-#### Properties
-
-- [Documentation](https://completedns.com/api/documentation/v1)
-- [OpenAPI](openapi/completedns-v1-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/completedns-v1.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/completedns-v1.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Spectral  Rules](rules/completedns-rules.yml)
-
-## Common Properties
-
-- [Portal](https://completedns.com/)
-- [Documentation](https://completedns.com/api/documentation/v2)
-- [Sign Up](https://completedns.com/register)
-- [Login](https://completedns.com/login)
 - [Pricing](https://completedns.com/pricing)
-- [Contact](https://completedns.com/contact)
-- [Terms of Service](https://completedns.com/terms)
-- [Privacy Policy](https://completedns.com/privacy)
-- [JSON-LD](json-ld/completedns-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/completedns-dns-history-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Terms of service](https://completedns.com/terms)
+- [Privacy policy](https://completedns.com/privacy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 53.0 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 25.0 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/completedns/](https://apis.io/providers/completedns/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CompleteDNS: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/completedns/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
